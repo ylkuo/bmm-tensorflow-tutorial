@@ -4,6 +4,8 @@ This repo contains TensorFlow ipython notebooks for deep learning tutorial in 20
 
 This tutorial walks you through the basic symbolic operations in Tensorflow and a simple convolutional neural networks on MNIST dataset.
 
+Some examples and snippets are courtesy of MIT 6.819/6.869 computer vision class.
+
 ## Installation
 
 Before you start, please install TensorFlow and Jupyter Notebook:

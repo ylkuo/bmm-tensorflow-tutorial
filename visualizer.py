@@ -9,10 +9,10 @@ def visualize_feature(layer):
     Return:
         flattened tensor
     """
-    features=tf.unstack(layer,axis=3)
-    layer_max=tf.reduce_max(layer)
-    features_padded=map(lambda t: tf.pad(t-layer_max,[[0,0],[0,1],[0,0]])+layer_max, features)
-    imgs=tf.expand_dims(tf.concat(features_padded,1),-1)
+    features = tf.unstack(layer, axis=3)
+    layer_max = tf.reduce_max(layer)
+    features_padded = map(lambda t: tf.pad(t-layer_max,[[0,0], [0,1], [0,0]]) + layer_max, features)
+    imgs = tf.expand_dims(tf.concat(features_padded, 1), -1)
     return imgs
 
 def visualize_filter(kernel, pad=1, name='visualizer'):
