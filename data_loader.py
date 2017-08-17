@@ -14,6 +14,7 @@ class DataLoader(object):
         self.dataset = read_data_sets(data_dir, one_hot=False)
         # basic stats of the dataset
         self.num = self.dataset.train.images.shape[0]
+        self.test_num = self.dataset.test.images.shape[0]
         self.h = height
         self.w = width
         self.c = channel
@@ -36,4 +37,4 @@ class DataLoader(object):
     
     def load_test(self):
         """ Load testing data """
-        return self.dataset.test.images.reshape((-1, self.h, self.w, self.c)), self.dataset.test.labels
+        return self.dataset.test.images.reshape((self.test_num, self.h, self.w, self.c)), self.dataset.test.labels
