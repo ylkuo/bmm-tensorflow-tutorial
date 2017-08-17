@@ -11,7 +11,7 @@ def visualize_feature(layer):
     """
     features = tf.unstack(layer, axis=3)
     layer_max = tf.reduce_max(layer)
-    features_padded = map(lambda t: tf.pad(t-layer_max,[[0,0], [0,1], [0,0]]) + layer_max, features)
+    features_padded = list(map(lambda t: tf.pad(t-layer_max,[[0,0], [0,1], [0,0]]) + layer_max, features))
     imgs = tf.expand_dims(tf.concat(features_padded, 1), -1)
     return imgs
 
@@ -70,10 +70,10 @@ def visualize_filter(kernel, pad=1, name='visualizer'):
         
         # handle multi-channel filters
         if channels > 1:
-            features=tf.unstack(x7,axis=3)
-            features_max=tf.reduce_max(features)
-            features_padded=map(lambda t: tf.pad(t-features_max,[[0,0],[0,1],[0,0]])+features_max,features)
-            x7=tf.expand_dims(tf.concat(features_padded,1),-1)
+            features = tf.unstack(x7,axis=3)
+            features_max = tf.reduce_max(features)
+            features_padded = list(map(lambda t: tf.pad(t-features_max, [[0,0],[0,1],[0,0]])+features_max,features))
+            x7 = tf.expand_dims(tf.concat(features_padded,1),-1)
             
         # scale to [0, 255] and convert to uint8
         imgs = tf.image.convert_image_dtype(x7, dtype = tf.uint8)
